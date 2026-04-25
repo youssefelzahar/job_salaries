@@ -58,7 +58,6 @@ Several preprocessing and feature engineering steps were applied:
 - Multicollinearity between features was checked and low-variance features were
   considered for removal to reduce noise.
 
----
 
 ## 🤖 Salary Prediction Model
 
@@ -66,9 +65,18 @@ Several preprocessing and feature engineering steps were applied:
 A supervised regression pipeline was built to predict the `salary` target variable.
 Multiple algorithms were trained and evaluated:
 
-- **Linear Regression** — served as the baseline model.
-- **Random Forest Regressor** — handled non-linear relationships and feature interactions well.
-- **Gradient Boosting (XGBoost / LightGBM)** — delivered the strongest predictive performance.
+
+---
+
+## 🆕 Model & Workflow Updates
+
+- **Feature Selection:** The final model uses only `certifications`, `skills_count`, and `experience_years` as features for salary prediction and clustering.
+- **Pipeline Function:** A reusable `run_pipeline` function was implemented to handle regression, classification, and clustering tasks, including support for the Elbow method and silhouette score for clustering.
+- **Best Model:** The final salary prediction model is an XGBoost regressor (`XGBRegressor`) trained on the selected features.
+- **Model Saving:** Both the salary prediction pipeline and the KMeans clustering pipeline are saved using `joblib` for deployment.
+- **Confidence Interval & Percentile:** The notebook computes a confidence interval for salary predictions and shows the user’s percentile ranking compared to the dataset.
+- **Clustering:** KMeans clustering is performed (with scaling), and the optimal number of clusters is determined using the Elbow method. The clustering model is also saved for use in the app.
+- **App Integration:** The saved models are used in the Streamlit app for interactive salary prediction and cluster analysis.
 
 ### Evaluation Metrics
 Models were evaluated using:
